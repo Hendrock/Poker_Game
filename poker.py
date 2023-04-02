@@ -59,7 +59,7 @@ def main():
     headers = ['Hand', 'Hand Type', 'Number of Ace']
     ws.append(headers)
     
-    for i in range(50000):
+    for i in range(50000): #Change this to the amount of poker you want to simulate
         hand = deal_cards()
         hand_str = ', '.join([f'{card[0]} of {card[1]}' for card in hand])
         hand_type, num_aces = check_hand(hand)
