@@ -37,19 +37,9 @@ def check_hand(hand):
     
 # Function to check for a straight
 def hasStraight(hand):
-    # create a set of the rank values for the hand, with low-ace converted to 1
-    ranks_set = set([(1 if rank == 'Ace' else int(rank)) for rank, suit in hand])
-    if len(ranks_set) < 5:
-        return False
-    # check for a straight using both low-ace and high-ace values
-    ranks_high = sorted([14 if rank == 1 else int(rank) for rank, suit in hand])
-    ranks_low = sorted([1 if rank == 'Ace' else int(rank) for rank, suit in hand])
-    if ranks_high[-1] - ranks_high[0] == 4 or (ranks_high[-1] == 14 and ranks_high[-2] == 5 and ranks_high[0] == 2):
-        return True
-    elif ranks_low[-1] - ranks_low[0] == 4:
-        return True
-    else:
-        return False
+    sorted_ranks = sorted(hand)
+    return (sorted_ranks[-1] - (len(hand) - 1) == sorted_ranks[0] 
+            and len(set(sorted_ranks)) == len(sorted_ranks))
 
 # Function to deal cards
 def deal_cards():
@@ -76,7 +66,7 @@ def main():
         row = [hand_str, hand_type, num_aces]
         ws.append(row)
         
-    wb.save('poker_handsfinalfinalfinalfinal.xlsx')
+    wb.save('poker_handsfinalfinalfinal6.xlsx')
 
 if __name__ == '__main__':
     main()
